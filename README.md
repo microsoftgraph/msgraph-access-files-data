@@ -28,7 +28,7 @@ The lab for this module is available in multiple units within the associated Mic
 
 ## Watch the module
 
-This module has been recorded and is available in the Office Development YouTube channel: _coming soon_
+This module has been recorded and is available in the Office Development YouTube channel: [Access Files with Microsoft Graph](https://youtu.be/YYcuyNfNdRw)
 
 ## Contributors
 
