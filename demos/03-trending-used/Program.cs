@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
@@ -33,7 +36,7 @@ namespace graphconsoleapp
       // var results = request.GetAsync().Result;
       // foreach (var resource in results)
       // {
-      //   Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " +resource.ResourceVisualization.Title);
+      //   Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " + resource.ResourceVisualization.Title);
       //   Console.WriteLine("  Weight: " + resource.Weight);
       //   Console.WriteLine("  Id: " + resource.Id);
       //   Console.WriteLine("  ResourceId: " + resource.ResourceReference.Id);
@@ -45,15 +48,12 @@ namespace graphconsoleapp
       var results = request.GetAsync().Result;
       foreach (var resource in results)
       {
-        Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " +resource.ResourceVisualization.Title);
+        Console.WriteLine("(" + resource.ResourceVisualization.Type + ") - " + resource.ResourceVisualization.Title);
         Console.WriteLine("  Last Accessed: " + resource.LastUsed.LastAccessedDateTime.ToString());
         Console.WriteLine("  Last Modified: " + resource.LastUsed.LastModifiedDateTime.ToString());
         Console.WriteLine("  Id: " + resource.Id);
         Console.WriteLine("  ResourceId: " + resource.ResourceReference.Id);
       }
-
-      Console.WriteLine("\nGraph Request:");
-      Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
     }
 
     private static IConfigurationRoot LoadAppSettings()
@@ -128,6 +128,5 @@ namespace graphconsoleapp
       username = Console.ReadLine();
       return username;
     }
-
   }
 }

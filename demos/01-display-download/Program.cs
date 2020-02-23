@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
@@ -28,34 +31,40 @@ namespace graphconsoleapp
       var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
       // request 1 - get user's files
-      var request = client.Me.Drive.Root.Children.Request();
+      //   var request = client.Me.Drive.Root.Children.Request();
 
-      var results = request.GetAsync().Result;
-      foreach (var file in results)
-      {
-        Console.WriteLine(file.Id + ": " + file.Name);
-      }
+      //   var results = request.GetAsync().Result;
+      //   foreach (var file in results)
+      //   {
+      //     Console.WriteLine(file.Id + ": " + file.Name);
+      //   }
+
+      //   Console.WriteLine("\nGraph Request:");
+      //   Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
 
       // request 2 - get specific file
-      // var fileId = "016IUWCBS57ZWKFRLO3FHIHDXXBRYO5QYA";
-      // var request = client.Me.Drive.Items[fileId].Request();
+      //   var fileId = "014ISLP7TGO6KG62KGHBHIUDJKJV57EVKR";
+      //   var request = client.Me.Drive.Items[fileId].Request();
 
-      // var results = request.GetAsync().Result;
-      // Console.WriteLine(results.Id + ": " + results.Name);
+      //   var results = request.GetAsync().Result;
+      //   Console.WriteLine(results.Id + ": " + results.Name);
+
+      //   Console.WriteLine("\nGraph Request:");
+      //   Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
 
       // request 3 - download specific file
-      // var fileId = "016IUWCBS57ZWKFRLO3FHIHDXXBRYO5QYA";
-      // var request = client.Me.Drive.Items[fileId].Content.Request();
+      var fileId = "014ISLP7TGO6KG62KGHBHIUDJKJV57EVKR";
+      var request = client.Me.Drive.Items[fileId].Content.Request();
 
-      // var stream = request.GetAsync().Result;
-      // var driveItemPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "driveItem_" + fileId + ".file");
-      // var driveItemFile = System.IO.File.Create(driveItemPath);
-      // stream.Seek(0, SeekOrigin.Begin);
-      // stream.CopyTo(driveItemFile);
-      // Console.WriteLine("Saved file to: " + driveItemPath);
+      var stream = request.GetAsync().Result;
+      var driveItemPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "driveItem_" + fileId + ".file");
+      var driveItemFile = System.IO.File.Create(driveItemPath);
+      stream.Seek(0, SeekOrigin.Begin);
+      stream.CopyTo(driveItemFile);
+      Console.WriteLine("Saved file to: " + driveItemPath);
 
-      // Console.WriteLine("\nGraph Request:");
-      // Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
+      Console.WriteLine("\nGraph Request:");
+      Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
     }
 
     private static IConfigurationRoot LoadAppSettings()
@@ -128,6 +137,5 @@ namespace graphconsoleapp
       username = Console.ReadLine();
       return username;
     }
-
   }
 }
