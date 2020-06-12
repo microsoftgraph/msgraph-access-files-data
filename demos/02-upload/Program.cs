@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
@@ -28,50 +31,51 @@ namespace graphconsoleapp
       var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
       // request 1 - upload small file to user's onedrive
-      var fileName = "smallfile.txt";
-      var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
-      Console.WriteLine("Uploading file: " + fileName);
-
-      FileStream fileStream = new FileStream(filePath, FileMode.Open);
-      var uploadedFile = client.Me.Drive.Root
-                                    .ItemWithPath("smallfile.txt")
-                                    .Content
-                                    .Request()
-                                    .PutAsync<DriveItem>(fileStream)
-                                    .Result;
-      Console.WriteLine("File uploaded to: " + uploadedFile.WebUrl);
-
-      // request 2 - upload large file to user's onedrive
-      // var fileName = "largefile.zip";
+      // var fileName = "smallfile.txt";
       // var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
       // Console.WriteLine("Uploading file: " + fileName);
 
-      // // load resource as a stream
-      // using (Stream stream = new FileStream(filePath, FileMode.Open))
-      // {
-      //   var uploadSession = client.Me.Drive.Root
-      //                                   .ItemWithPath(fileName)
-      //                                   .CreateUploadSession()
-      //                                   .Request()
-      //                                   .PostAsync()
-      //                                   .Result;
-      //   // create upload task
-      //   var maxChunkSize = 320 * 1024;
-      //   var largeUploadTask = new LargeFileUploadTask<DriveItem>(uploadSession, stream, maxChunkSize);
+      // FileStream fileStream = new FileStream(filePath, FileMode.Open);
+      // var uploadedFile = client.Me.Drive.Root
+      //                               .ItemWithPath("smallfile.txt")
+      //                               .Content
+      //                               .Request()
+      //                               .PutAsync<DriveItem>(fileStream)
+      //                               .Result;
+      // Console.WriteLine("File uploaded to: " + uploadedFile.WebUrl);
 
-      //   // create progress implementation
-      //   IProgress<long> uploadProgress = new Progress<long>(uploadBytes =>
-      //   {
-      //     Console.WriteLine($"Uploaded {uploadBytes} bytes of {stream.Length} bytes");
-      //   });
+      // request 2 - upload large file to user's onedrive
+      var fileName = "largefile.zip";
+      var filePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), fileName);
+      Console.WriteLine("Uploading file: " + fileName);
 
-      //   // upload file
-      //   UploadResult<DriveItem> uploadResult = largeUploadTask.UploadAsync(uploadProgress).Result;
-      //   if (uploadResult.UploadSucceeded)
-      //   {
-      //     Console.WriteLine("File uploaded to user's OneDrive root folder.");
-      //   }
-      // }
+      // load resource as a stream
+      using (Stream stream = new FileStream(filePath, FileMode.Open))
+      {
+        var uploadSession = client.Me.Drive.Root
+                                        .ItemWithPath(fileName)
+                                        .CreateUploadSession()
+                                        .Request()
+                                        .PostAsync()
+                                        .Result;
+
+        // create upload task
+        var maxChunkSize = 320 * 1024;
+        var largeUploadTask = new LargeFileUploadTask<DriveItem>(uploadSession, stream, maxChunkSize);
+
+        // create progress implementation
+        IProgress<long> uploadProgress = new Progress<long>(uploadBytes =>
+        {
+          Console.WriteLine($"Uploaded {uploadBytes} bytes of {stream.Length} bytes");
+        });
+
+        // upload file
+        UploadResult<DriveItem> uploadResult = largeUploadTask.UploadAsync(uploadProgress).Result;
+        if (uploadResult.UploadSucceeded)
+        {
+          Console.WriteLine("File uploaded to user's OneDrive root folder.");
+        }
+      }
     }
 
     private static IConfigurationRoot LoadAppSettings()
@@ -145,6 +149,5 @@ namespace graphconsoleapp
       username = Console.ReadLine();
       return username;
     }
-
   }
 }
