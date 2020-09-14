@@ -39,21 +39,15 @@ namespace graphconsoleapp
       //     Console.WriteLine(file.Id + ": " + file.Name);
       //   }
 
-      //   Console.WriteLine("\nGraph Request:");
-      //   Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
-
       // request 2 - get specific file
-      //   var fileId = "014ISLP7TGO6KG62KGHBHIUDJKJV57EVKR";
+      //   var fileId = "014ISLP7UFX4JXBPQVTRHILHUXCJQEMW6D";
       //   var request = client.Me.Drive.Items[fileId].Request();
 
       //   var results = request.GetAsync().Result;
       //   Console.WriteLine(results.Id + ": " + results.Name);
 
-      //   Console.WriteLine("\nGraph Request:");
-      //   Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
-
       // request 3 - download specific file
-      var fileId = "014ISLP7TGO6KG62KGHBHIUDJKJV57EVKR";
+      var fileId = "014ISLP7UFX4JXBPQVTRHILHUXCJQEMW6D";
       var request = client.Me.Drive.Items[fileId].Content.Request();
 
       var stream = request.GetAsync().Result;
@@ -62,9 +56,6 @@ namespace graphconsoleapp
       stream.Seek(0, SeekOrigin.Begin);
       stream.CopyTo(driveItemFile);
       Console.WriteLine("Saved file to: " + driveItemPath);
-
-      Console.WriteLine("\nGraph Request:");
-      Console.WriteLine(request.GetHttpRequestMessage().RequestUri);
     }
 
     private static IConfigurationRoot LoadAppSettings()
