@@ -31,7 +31,7 @@ namespace graphconsoleapp
 
       var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
-      // request 1 - get user's files // first step
+      // request 1 - get user's files
         var request = client.Me.Drive.Root.Children.Request();
 
         var results = request.GetAsync().Result;
