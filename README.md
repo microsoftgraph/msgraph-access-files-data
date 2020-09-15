@@ -32,7 +32,7 @@ This module has been recorded and is available in the Office Development YouTube
 
 ## Contributors
 
-|        Roles         |                                             Author(s)                                              |
+| Roles                | Author(s)                                                                                          |
 | -------------------- | -------------------------------------------------------------------------------------------------- |
 | Lab / Slides / Demos | Andrew Connell (Microsoft MVP, [Voitanos](/voitanos)) [@andrewconnell](//github.com/andrewconnell) |
 | QA                   | Rob Windsor (Microsoft MVP, PAIT Group) [@rob-windsor](//github.com/rob-windsor)                   |
@@ -40,11 +40,12 @@ This module has been recorded and is available in the Office Development YouTube
 
 ## Version history
 
-| Version |       Date        |         Comments         |
-| ------- | ----------------- | ------------------------ |
-| 1.2     | June 11, 2020     | FY2020Q4 content refresh |
-| 1.1     | February 23, 2020 | FY2020Q3 content refresh |
-| 1.0     | January 8, 2020   | New module published     |
+| Version | Date               | Comments                 |
+| ------- | ------------------ | ------------------------ |
+| 1.3     | September 10, 2020 | FY2021Q1 content refresh |
+| 1.2     | June 11, 2020      | FY2020Q4 content refresh |
+| 1.1     | February 23, 2020  | FY2020Q3 content refresh |
+| 1.0     | January 8, 2020    | New module published     |
 
 ## Disclaimer
 
