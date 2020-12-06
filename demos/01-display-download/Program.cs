@@ -31,23 +31,23 @@ namespace graphconsoleapp
       var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
       // request 1 - get user's files
-      //   var request = client.Me.Drive.Root.Children.Request();
+      // var request = client.Me.Drive.Root.Children.Request();
 
-      //   var results = request.GetAsync().Result;
-      //   foreach (var file in results)
-      //   {
-      //     Console.WriteLine(file.Id + ": " + file.Name);
-      //   }
+      // var results = request.GetAsync().Result;
+      // foreach (var file in results)
+      // {
+      //   Console.WriteLine(file.Id + ": " + file.Name);
+      // }
 
       // request 2 - get specific file
-      //   var fileId = "014ISLP7UFX4JXBPQVTRHILHUXCJQEMW6D";
-      //   var request = client.Me.Drive.Items[fileId].Request();
+      // var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
+      // var request = client.Me.Drive.Items[fileId].Request();
 
-      //   var results = request.GetAsync().Result;
-      //   Console.WriteLine(results.Id + ": " + results.Name);
+      // var results = request.GetAsync().Result;
+      // Console.WriteLine(results.Id + ": " + results.Name);
 
       // request 3 - download specific file
-      var fileId = "014ISLP7UFX4JXBPQVTRHILHUXCJQEMW6D";
+      var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
       var request = client.Me.Drive.Items[fileId].Content.Request();
 
       var stream = request.GetAsync().Result;
