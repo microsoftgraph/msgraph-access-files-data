@@ -88,7 +88,6 @@ namespace graphconsoleapp
       scopes.Add("User.Read");
       scopes.Add("Files.Read");
       scopes.Add("Files.ReadWrite");
-      scopes.Add("Sites.Read.All");
 
       var cca = PublicClientApplicationBuilder.Create(clientId)
                                               .WithAuthority(authority)
