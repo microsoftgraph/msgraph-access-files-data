@@ -12,9 +12,9 @@ using Helpers;
 
 namespace graphconsoleapp
 {
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
       Console.WriteLine("Hello World!");
 
@@ -31,20 +31,20 @@ namespace graphconsoleapp
       var client = GetAuthenticatedGraphClient(config, userName, userPassword);
 
       // request 1 - get user's files
-      //   var request = client.Me.Drive.Root.Children.Request();
+      // var request = client.Me.Drive.Root.Children.Request();
 
-      //   var results = request.GetAsync().Result;
-      //   foreach (var file in results)
-      //   {
-      //     Console.WriteLine(file.Id + ": " + file.Name);
-      //   }
+      // var results = request.GetAsync().Result;
+      // foreach (var file in results)
+      // {
+      //   Console.WriteLine(file.Id + ": " + file.Name);
+      // }
 
       // request 2 - get specific file
-      //   var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
-      //   var request = client.Me.Drive.Items[fileId].Request();
+      // var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
+      // var request = client.Me.Drive.Items[fileId].Request();
 
-      //   var results = request.GetAsync().Result;
-      //   Console.WriteLine(results.Id + ": " + results.Name);
+      // var results = request.GetAsync().Result;
+      // Console.WriteLine(results.Id + ": " + results.Name);
 
       // request 3 - download specific file
       var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
@@ -58,7 +58,7 @@ namespace graphconsoleapp
       Console.WriteLine("Saved file to: " + driveItemPath);
     }
 
-    private static IConfigurationRoot LoadAppSettings()
+    private static IConfigurationRoot? LoadAppSettings()
     {
       try
       {
@@ -123,10 +123,10 @@ namespace graphconsoleapp
 
     private static string ReadUsername()
     {
-      string username;
+      string? username;
       Console.WriteLine("Enter your username");
       username = Console.ReadLine();
-      return username;
+      return username ?? "";
     }
   }
 }
