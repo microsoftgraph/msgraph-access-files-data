@@ -12,9 +12,9 @@ using Helpers;
 
 namespace graphconsoleapp
 {
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
       Console.WriteLine("Hello World!");
 
@@ -56,7 +56,7 @@ namespace graphconsoleapp
       }
     }
 
-    private static IConfigurationRoot LoadAppSettings()
+    private static IConfigurationRoot? LoadAppSettings()
     {
       try
       {
@@ -88,6 +88,7 @@ namespace graphconsoleapp
       scopes.Add("User.Read");
       scopes.Add("Files.Read");
       scopes.Add("Files.ReadWrite");
+      scopes.Add("Sites.Read.All");
 
       var cca = PublicClientApplicationBuilder.Create(clientId)
                                               .WithAuthority(authority)
@@ -122,10 +123,10 @@ namespace graphconsoleapp
 
     private static string ReadUsername()
     {
-      string username;
+      string? username;
       Console.WriteLine("Enter your username");
       username = Console.ReadLine();
-      return username;
+      return username ?? "";
     }
   }
 }
