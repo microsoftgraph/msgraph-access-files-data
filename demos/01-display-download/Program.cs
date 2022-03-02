@@ -40,14 +40,14 @@ namespace graphconsoleapp
       // }
 
       // request 2 - get specific file
-      // var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
+      // var fileId = "01LX2I5ENFIFA4BZFWJZGYN4URXGJBJBJH";
       // var request = client.Me.Drive.Items[fileId].Request();
 
       // var results = request.GetAsync().Result;
       // Console.WriteLine(results.Id + ": " + results.Name);
 
       // request 3 - download specific file
-      var fileId = "014ISLP7UOSXTGK4NFKVE2ZIGJZRASCZ6D";
+      var fileId = "01LX2I5ENFIFA4BZFWJZGYN4URXGJBJBJH";
       var request = client.Me.Drive.Items[fileId].Content.Request();
 
       var stream = request.GetAsync().Result;
